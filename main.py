@@ -6,8 +6,8 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="auto",
     menu_items={
-        "Get Help": "https://github.com/Siddhesh-Agarwal/CGPA-Calculator/discussions",
-        "Report a bug": "https://github.com/Siddhesh-Agarwal/CGPA-Calculator/issues/new",
+        #"Get Help": " ",
+        #"Report a bug": " ",
         "About": None,
     },
 )
@@ -67,7 +67,7 @@ previous_cgpa = cols[0].number_input(
 previous_credit = (
     cols[1]
     .number_input(
-        label="Previous Credit",
+        label="Previous Credit (87 if AI-ML)",
         help="Enter the total number of credits you have taken upto previous semester",
         min_value=0.0,
         value=0.0,
@@ -116,4 +116,3 @@ if st.button("Calculate"):
     )
 
 
-st.markdown("Made with ❤️ by [Siddhesh Agarwal](https://siddhesh.cc/)")
