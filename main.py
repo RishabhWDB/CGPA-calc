@@ -1,16 +1,56 @@
 import streamlit as st
+import base64
+
+def set_background(image_file):
+    with open(image_file, "rb") as f:
+        img_data = f.read()
+    b64_encoded = base64.b64encode(img_data).decode()
+    
+    css = f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/png;base64,{b64_encoded}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }}
+    </style>
+    """
+    st.markdown(css, unsafe_allow_html=True)
+
 
 st.set_page_config(
     page_title="CGPA Calculator",
     page_icon="📊",
     layout="centered",
     initial_sidebar_state="auto",
-    menu_items={
+    #menu_items={
         #"Get Help": " ",
         #"Report a bug": " ",
-        "About": None,
-    },
+        #"About": None,
+    #},
 )
+
+# Call after st.set_page_config()
+set_background("images/16-9.jpg")
+
+st.markdown("""
+<style>
+body, p, h1, h2, h3, h4, h5, h6, [data-testid="stMarkdown"] {
+    color: #ffffff !important;
+}
+.stButton > button {
+    color: #000000 !important;
+    background-color: #000000 !important;
+    border: none !important;
+}
+.stButton > button:hover {
+    color: #fffff !important;
+    background-color: #000000 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 
 grade_to_point = {
@@ -78,9 +118,9 @@ previous_credit = (
 number_of_subjects = st.number_input(
     label="Number of Subjects",
     help="Enter the number of subjects you are taking this semester",
-    min_value=1,
+    min_value=5,
     max_value=10,
-    value=5,
+    value=7,
 ).__int__()
 
 grade = [grades[0]] * number_of_subjects
